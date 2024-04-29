@@ -1,9 +1,11 @@
 import { Router } from 'express'
-import bookController from './src/books/book.controller'
+
+import characterController from './src/character/character.controller'
 
 const routes = Router()
 routes.get('/health-check')
-routes.post('/books', bookController.create)
+
+routes.get('/personagens', characterController.findAll)
 
 export {
     routes
