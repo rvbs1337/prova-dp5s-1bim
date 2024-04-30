@@ -11,7 +11,7 @@ class ApiController{
 
         console.log(resposta.data.results[0].characters.items)
         // resposta.data.results.characters.some((element:any) =>{
-        //     console.log(element)
+        //     console.log(element) oi mandina
         // })
 
         resposta.data.results[0].characters.items.some((element:any) =>{
