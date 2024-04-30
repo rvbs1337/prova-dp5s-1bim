@@ -1,28 +1,28 @@
-import userSchema from "./creator.schema";
+import creatorSchema from "./creator.schema";
 
-export class UserService{
+export class CreatorService{
     async create(user: any){
-        const createUser = userSchema.create(user)
+        const createUser = creatorSchema.create(user)
         return createUser
     }
 
     async findById(id: any){
-        const foundUser = await userSchema.findById(id)
+        const foundUser = await creatorSchema.findById(id)
         return foundUser
     }
 
     async findAll(){
-        const foundUser = await userSchema.find()
+        const foundUser = await creatorSchema.find()
         return foundUser
     }
 
     async updateById(id: any, user: any){
-        const foundUser = await userSchema.findByIdAndUpdate(id, user)
+        const foundUser = await creatorSchema.findByIdAndUpdate(id, user)
         return foundUser
     }
 
     async deleteById(id: any){
-        const deletedUser = await userSchema.findByIdAndDelete(id)
+        const deletedUser = await creatorSchema.findByIdAndDelete(id)
         return deletedUser
     }
 }

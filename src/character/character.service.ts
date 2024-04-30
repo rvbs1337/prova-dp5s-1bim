@@ -1,5 +1,4 @@
 import characterSchema from "./character.schema";
-import createUrlApiMarvel from "../api/api";
 
 export class CharacterService{
     async create(character: any){
@@ -14,10 +13,7 @@ export class CharacterService{
 
     async findAll(){
         const foundCharacter = await characterSchema.find()
-
-        createUrlApiMarvel("events/277/characters") //EXEMPLO DE USO DA FUNCAO
-
-        return createUrlApiMarvel("events/277/characters")
+        return foundCharacter
     }
 
     async updateById(id: any, character: any){
