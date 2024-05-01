@@ -9,8 +9,12 @@ const hash = md5(ts + privateKey + publicKey)
 
 const finalUrl = `?&ts=${ts}&apikey=${publicKey}&hash=${hash}`
 
-function createUrlApiMarvel(endpoint: string){
+export function createUrlApiMarvel(endpoint: string){
     return baseUrl + endpoint + finalUrl;
+}
+
+export function completeUrlApiMarvel(url: string){
+    return url + finalUrl
 }
 
 export default createUrlApiMarvel;

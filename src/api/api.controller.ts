@@ -1,5 +1,9 @@
+import app from '../../app'
 import { Request, Response } from 'express'
-import createUrlApiMarvel from './api'
+import { createUrlApiMarvel, completeUrlApiMarvel} from './api'
+import { CharacterService } from '../character/character.service'
+import { ComicService } from '../comic/comic.service'
+import { CreatorService } from '../creator/creator.service'
 
 class ApiController{
     async createDB(req: Request, res: Response){
@@ -9,15 +13,64 @@ class ApiController{
         const marvelApiGeral = await fetch(buscaGeral)
         const resposta:any = await marvelApiGeral.json();
 
-        console.log(resposta.data.results[0].characters.items)
-        // resposta.data.results.characters.some((element:any) =>{
-        //     console.log(element) oi mandina
-        // })
+        const listaPersonagens = resposta.data.results[0].characters.items;
+        const listaCriadores = resposta.data.results[0].creators.items;
+        const listaQuadrinho = resposta.data.results[0].comics.items;     
+        
+        /* for( let i = 0; i < listaPersonagens.length; i++){
+            const personagemApi = await fetch(completeUrlApiMarvel(listaPersonagens[i].resourceURI))
+            const resPersonagem:any = await personagemApi.json();
+            const personagem = resPersonagem.data.results[0]
 
-        resposta.data.results[0].characters.items.some((element:any) =>{
-            console.log(element)
-        })
+            console.log(personagem)
 
+            const bodyPersonagem = {
+                id: personagem.id,
+                name: personagem.name,
+                description: personagem.description,
+                img: personagem.thumbnail.path + "." + personagem.thumbnail.extension
+            }
+
+            await new CharacterService().create(bodyPersonagem)
+        }  */
+
+        /* for( let i = 0; i < listaCriadores.length; i++){
+            const criadorApi = await fetch(completeUrlApiMarvel(listaCriadores[i].resourceURI))
+            const resCriador:any = await criadorApi.json();
+
+            const criador = resCriador.data.results[0]
+
+            const bodyCriador = {
+                id: criador.id,
+                name: criador.fullName,
+                role: listaCriadores.role
+            }
+
+            await new CreatorService().create(bodyCriador)
+
+            console.log(criador)
+        } */
+
+        for( let i = 0; i < listaQuadrinho.length; i++){
+            const quadrinhoApi = await fetch(completeUrlApiMarvel(listaQuadrinho[i].resourceURI))
+            const resQuadrinho:any = await quadrinhoApi.json();
+
+            const quadrinho = resQuadrinho.data.results[0]
+
+            const bodyQuadrinho = {
+                id: quadrinho.id,
+                title: quadrinho.title,
+                description: quadrinho.description,
+                publicationDate: quadrinho.publicationDate,
+                cover: "",
+                idCreator: ""
+            }
+
+            console.log(resQuadrinho.data.results[0])
+        }  
+       
+
+        
     }
 
 }
