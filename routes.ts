@@ -9,7 +9,7 @@ import creatorController from './src/creator/creator.controller'
 const routes = Router()
 routes.get('/health-check')
 
-routes.get('/testeTeste', apiController.createDB)
+routes.get('/createDB', apiController.createDB)
 
 routes.post('/character', characterController.create)
 routes.post('/character/:id', characterController.updateById)
@@ -22,6 +22,7 @@ routes.post('/comic/:id', comicController.updateById)
 routes.get('/comic', comicController.findAll)
 routes.get('/comic/:id', comicController.findById)
 routes.delete('/comic/:id', comicController.deleteById)
+routes.get('/comic/titulo/:title', comicController.findByTitle)
 
 routes.post('/creator', creatorController.create)
 routes.post('/creator/:id', creatorController.updateById)

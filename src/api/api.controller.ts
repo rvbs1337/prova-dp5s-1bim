@@ -72,7 +72,7 @@ class ApiController{
         }  
        
 
-        
+        return res.json("Banco criado com sucesso.")
     }
 
 }
