@@ -16,6 +16,7 @@ routes.post('/character/:id', characterController.updateById)
 routes.get('/character', characterController.findAll)
 routes.get('/character/:id', characterController.findById)
 routes.delete('/character/:id', characterController.deleteById)
+routes.get('/character/:name', characterController.findByName)
 
 routes.post('/comic', comicController.create)
 routes.post('/comic/:id', comicController.updateById)

@@ -26,6 +26,22 @@ class CharacterController{
         const character = await new CharacterService().deleteById(req.params.id)
         return res.json(character)
     }
+
+    async findByName(req: Request, res: Response) {
+        const character = await new CharacterService().findByName(req.params.name)
+
+        try {
+            if (character) {
+                res.status(200).json(character);
+            } else {
+                res.status(404).json({ message: 'Nenhum  personagem com o nome procurado.' });
+            }
+        } catch (error: any) {
+            res.status(500).json({ message: error.message });
+        }
+
+        return res.json(character)
+    }
 }
 
 export default new CharacterController()

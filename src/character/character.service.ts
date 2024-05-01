@@ -25,4 +25,13 @@ export class CharacterService{
         const deletedCharacter = await characterSchema.findByIdAndDelete(id)
         return deletedCharacter
     }
+
+    async findByName(name: any) {
+        try {
+            const foundCharacter = await characterSchema.findOne({ name: name });
+            return foundCharacter;
+        } catch (error: any) {
+            throw new Error('Erro ao buscar personagem com nome: ' + error.message);
+        }
+    }
 }
