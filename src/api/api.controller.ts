@@ -17,7 +17,7 @@ class ApiController{
         const listaCriadores = resposta.data.results[0].creators.items;
         const listaQuadrinho = resposta.data.results[0].comics.items;     
         
-        /* for( let i = 0; i < listaPersonagens.length; i++){
+        for( let i = 0; i < listaPersonagens.length; i++){
             const personagemApi = await fetch(completeUrlApiMarvel(listaPersonagens[i].resourceURI))
             const resPersonagem:any = await personagemApi.json();
             const personagem = resPersonagem.data.results[0]
@@ -32,9 +32,9 @@ class ApiController{
             }
 
             await new CharacterService().create(bodyPersonagem)
-        }  */
+        }  
 
-        /* for( let i = 0; i < listaCriadores.length; i++){
+        for( let i = 0; i < listaCriadores.length; i++){
             const criadorApi = await fetch(completeUrlApiMarvel(listaCriadores[i].resourceURI))
             const resCriador:any = await criadorApi.json();
 
@@ -49,7 +49,7 @@ class ApiController{
             await new CreatorService().create(bodyCriador)
 
             console.log(criador)
-        } */
+        }
 
         for( let i = 0; i < listaQuadrinho.length; i++){
             const quadrinhoApi = await fetch(completeUrlApiMarvel(listaQuadrinho[i].resourceURI))
@@ -61,10 +61,12 @@ class ApiController{
                 id: quadrinho.id,
                 title: quadrinho.title,
                 description: quadrinho.description,
-                publicationDate: quadrinho.publicationDate,
-                cover: "",
-                idCreator: ""
+                publicationDate: quadrinho.dates[0].date,
+                cover: quadrinho.thumbnail.path + '.' + quadrinho.thumbnail.extension,
+                creators: quadrinho.creators.items
             }
+
+            await new ComicService().create(bodyQuadrinho)
 
             console.log(resQuadrinho.data.results[0])
         }  

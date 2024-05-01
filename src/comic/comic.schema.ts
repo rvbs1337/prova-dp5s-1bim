@@ -8,7 +8,7 @@ const comicSchema = new Schema({
     description: String,
     publicationDate: Date,
     cover: String,
-    idCreator: Number
+    creators: { type : Array , "default" : [] }
 },{
     timestamps: true,
 })
