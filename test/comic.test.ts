@@ -92,7 +92,6 @@ describe('testando endpoints comics', () => {
         expect(response.body[0].title).toBe("Avengers: The Initiative (2007) #4")
     })
 
-    // routes.get('/comic/creator/role/:role', comicController.findCreatorsByRole)
     it('Deve encontrar as comics por um pedaço do nome de um Criador', async () => {
         const role = "colorist"
         const response = await request(app).get(`/comic/creator/role/${role}`)
