@@ -1,7 +1,7 @@
 import app from "../app";
 import { describe, it, expect } from "@jest/globals";
 import characterModel from '../src/character/character.schema'
-import * as request from 'supertest'
+import request from 'supertest'
 
 describe('testando endpoints personagem', ()=>{
     it('Deve inserir um personagem no banco',async () => {

@@ -1,7 +1,7 @@
 import app from "../app";
 import { describe, it, expect } from "@jest/globals";
 import creatorModel from '../src/creator/creator.schema'
-import * as request from 'supertest'
+import request from 'supertest'
 
 describe('testando endpoints criador', ()=>{
     it('Deve inserir um criador no banco',async () => {
