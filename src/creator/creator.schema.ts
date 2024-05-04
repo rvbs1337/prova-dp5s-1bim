@@ -5,7 +5,7 @@ import { Schema, model } from 'mongoose'
 const creatorSchema = new Schema({
     id: Number,
     name: String,
-    role: String
+    img: String
 },{
     timestamps: true,
 })

@@ -42,12 +42,12 @@ class ApiController{
             const bodyCriador = {
                 id: criador.id,
                 name: criador.fullName,
-                role: listaCriadores.role
+                img: criador.thumbnail.path + "." + criador.thumbnail.extension
             }
 
             await new CreatorService().create(bodyCriador)
 
-            console.log(criador)
+            // console.log(criador)
         }
 
         for( let i = 0; i < listaQuadrinho.length; i++){
@@ -67,7 +67,7 @@ class ApiController{
 
             await new ComicService().create(bodyQuadrinho)
 
-            console.log(resQuadrinho.data.results[0])
+            // console.log(resQuadrinho.data.results[0])
         }  
        
 
