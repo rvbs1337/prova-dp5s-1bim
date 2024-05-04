@@ -1,4 +1,3 @@
-import app from '../../app'
 import { Request, Response } from 'express'
 import { createUrlApiMarvel, completeUrlApiMarvel} from './api'
 import { CharacterService } from '../character/character.service'

@@ -27,12 +27,17 @@ export class ComicService {
     }
 
     async findByTitle(title: string) {
-        const foundComics = await comicSchema.find({ title: { $regex: title, $options: 'i' } });
-        return foundComics;
+        const foundComics = await comicSchema.find({ title: { $regex: title, $options: 'i' } })
+        return foundComics
     }
 
-    async findByCreator(creator: string) {
-        const foundComics = await comicSchema.find({ "creators.name": creator });
-        return foundComics;
+    async findByCreator(creator: any) {
+        const foundComics = await comicSchema.find({ creators: { $elemMatch: { name: { $regex: creator, $options: 'i' } } } })
+        return foundComics
+    }
+
+    async findCreatorsByRole(role: any){
+        const foundCreator = await comicSchema.find({ creators: { $elemMatch: { role: { $regex: role, $options: 'i' } } } }, { 'creators.$': 1 })
+        return foundCreator
     }
 }

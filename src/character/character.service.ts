@@ -27,12 +27,12 @@ export class CharacterService{
     }
 
     async findByName(name: any) {
-        const foundCharacter = await characterSchema.findOne({ name: name });
+        const foundCharacter = await characterSchema.findOne({ name: { $regex: name, $options: 'i' } });
         return foundCharacter;
     }
 
     async findComicsByName(name: any) {
-        const foundComics = await characterSchema.find({ name: name });
+        const foundComics = await characterSchema.find({ name: { $regex: name, $options: 'i' } });
         return foundComics;
     }
 }

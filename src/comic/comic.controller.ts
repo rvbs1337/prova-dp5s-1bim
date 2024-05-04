@@ -28,13 +28,18 @@ class ComicController {
     }
 
     async findByTitle(req: Request, res: Response) {
-        const comics = await new ComicService().findByTitle(req.params.title);
-        return res.json(comics);
+        const comics = await new ComicService().findByTitle(req.params.title)
+        return res.json(comics)
     }
 
     async findByCreator(req: Request, res: Response) {
-        const comics = await new ComicService().findByCreator(req.params.creator);
-        return res.json(comics);
+        const comics = await new ComicService().findByCreator(req.params.creator)
+        return res.json(comics)
+    }
+
+    async findCreatorsByRole(req: Request, res: Response){
+        const creators = await new ComicService().findCreatorsByRole(req.params.role)
+        return res.json(creators)
     }
 }
 
