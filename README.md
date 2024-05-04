@@ -225,7 +225,7 @@ Retorna os detalhes de um criador específico da saga com base no ID fornecido.
 
 Exclui um criador da saga com base no ID fornecido.
 
-## Controlador
+## Controller
 
 ### CharacterController
 
@@ -270,7 +270,7 @@ O `CreatorController` é responsável por lidar com as requisições relacionada
 - `updateById`: Atualiza um criador pelo ID.
 - `deleteById`: Exclui um criador pelo ID.
 
-## Esquema
+## Schema
 
 ### CharacterSchema
 
@@ -307,7 +307,7 @@ Campos:
 - `name`: Nome do criador.
 - `img`: URL da imagem do criador.
 
-## Serviço
+## Service
 
 ### CharacterService
 
