@@ -30,4 +30,9 @@ export class ComicService {
         const foundComics = await comicSchema.find({ title: { $regex: title, $options: 'i' } });
         return foundComics;
     }
+
+    async findByCreator(creator: string) {
+        const foundComics = await comicSchema.find({ "creators.name": creator });
+        return foundComics;
+    }
 }

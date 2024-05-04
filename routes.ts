@@ -23,6 +23,7 @@ routes.get('/comic', comicController.findAll)
 routes.get('/comic/:id', comicController.findById)
 routes.delete('/comic/:id', comicController.deleteById)
 routes.get('/comic/titulo/:title', comicController.findByTitle)
+routes.get('comic/creator/:creator', comicController.findByCreator)
 
 routes.post('/creator', creatorController.create)
 routes.post('/creator/:id', creatorController.updateById)

@@ -31,6 +31,11 @@ class ComicController {
         const comics = await new ComicService().findByTitle(req.params.title);
         return res.json(comics);
     }
+
+    async findByCreator(req: Request, res: Response) {
+        const comics = await new ComicService().findByCreator(req.params.creator);
+        return res.json(comics);
+    }
 }
 
 export default new ComicController()
