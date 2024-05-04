@@ -5,11 +5,12 @@ import app from '../app';
 
 describe('testando endpoints comics', ()=>{
     it('Deve inserir um comic no banco',async () => {
-
+        const publicationDate = new Date();
+        
         const comicMock = {
             title: "Tarefa teste 1",
             description: "teste de insercao 1",
-            publicationDate: Date(),
+            publicationDate: publicationDate,
             cover: ""
         }
 
@@ -19,7 +20,7 @@ describe('testando endpoints comics', ()=>{
         expect(response.status).toEqual(200)
         expect(comicMock.title).toBe(foundComic?.title)
         expect(comicMock.description).toBe(foundComic?.description)
-        expect(comicMock.publicationDate).toBe(foundComic?.publicationDate)
+        expect(comicMock.publicationDate.toISOString()).toStrictEqual(foundComic?.publicationDate?.toISOString())
         expect(comicMock.cover).toBe(foundComic?.cover)
     })
 
@@ -32,10 +33,12 @@ describe('testando endpoints comics', ()=>{
     })
 
     it('Deve atualizar uma comic existente', async () => {
+        const publicationDate = new Date();
+
         const comicMock = {
             title: "Tarefa teste 1",
             description: "teste de insercao 1",
-            publicationDate: Date(),
+            publicationDate: publicationDate,
             cover: ""
         };
         const insertResponse = await request(app).post('/comic').send(comicMock);
@@ -43,7 +46,7 @@ describe('testando endpoints comics', ()=>{
         const updatedComicMock = {
             title: "Tarefa teste 1",
             description: "teste de insercao 1",
-            publicationDate: Date(),
+            publicationDate: publicationDate,
             cover: ""
         };
         const updateResponse = await request(app).post(`/comic/${insertResponse.body._id}`).send(updatedComicMock);
@@ -53,7 +56,7 @@ describe('testando endpoints comics', ()=>{
         expect(updateResponse.status).toBe(200);
         expect(foundUpdatedComic?.title).toBe(updatedComicMock.title);
         expect(foundUpdatedComic?.description).toBe(updatedComicMock.description);
-        expect(foundUpdatedComic?.publicationDate).toBe(updatedComicMock.publicationDate);
+        expect(foundUpdatedComic?.publicationDate?.toISOString()).toStrictEqual(updatedComicMock.publicationDate.toISOString());
         expect(foundUpdatedComic?.cover).toBe(updatedComicMock.cover);
     });
 
