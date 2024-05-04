@@ -4,6 +4,16 @@ A seguir está a documentação da API para a entidade "Personagens" da saga esc
 
 ## Rotas
 
+#### Criação do Banco de Dados da Saga
+
+**Método:** `GET`
+
+**Endpoint:** `/createDB`
+
+Cria o banco de dados da saga populando-o com dados obtidos da API da Marvel.
+
+### Personagens
+
 ### Criação de um Personagem
 
 **Método:** `POST`
@@ -67,7 +77,7 @@ Atualiza os detalhes de um personagem existente na saga.
 }
 ```
 
-### Listagem de Todos os Personagens
+#### Listagem de Todos os Personagens
 
 **Método:** `GET`
 
@@ -75,7 +85,7 @@ Atualiza os detalhes de um personagem existente na saga.
 
 Retorna todos os personagens da saga.
 
-### Busca de um Personagem por ID
+#### Busca de um Personagem por ID
 
 **Método:** `GET`
 
@@ -83,7 +93,7 @@ Retorna todos os personagens da saga.
 
 Retorna os detalhes de um personagem específico da saga com base no ID fornecido.
 
-### Exclusão de um Personagem
+#### Exclusão de um Personagem
 
 **Método:** `DELETE`
 
@@ -91,7 +101,7 @@ Retorna os detalhes de um personagem específico da saga com base no ID fornecid
 
 Exclui um personagem da saga com base no ID fornecido.
 
-### Busca de um Personagem por Nome
+#### Busca de um Personagem por Nome
 
 **Método:** `GET`
 
@@ -99,13 +109,121 @@ Exclui um personagem da saga com base no ID fornecido.
 
 Retorna os detalhes de um personagem da saga com base no nome fornecido.
 
-### Busca de Quadrinhos de um Personagem
+#### Busca de Quadrinhos de um Personagem
 
 **Método:** `GET`
 
 **Endpoint:** `/character/comicCharacter/:name`
 
 Retorna os quadrinhos em que um personagem específico da saga aparece, com base no nome fornecido.
+
+### Quadrinhos
+
+#### Criação de um Quadrinho
+
+**Método:** `POST`
+
+**Endpoint:** `/comic`
+
+Cria um novo quadrinho na saga.
+
+#### Atualização de um Quadrinho
+
+**Método:** `POST`
+
+**Endpoint:** `/comic/:id`
+
+Atualiza os detalhes de um quadrinho existente na saga.
+
+#### Listagem de Todos os Quadrinhos
+
+**Método:** `GET`
+
+**Endpoint:** `/comic`
+
+Retorna todos os quadrinhos da saga.
+
+#### Busca de um Quadrinho por ID
+
+**Método:** `GET`
+
+**Endpoint:** `/comic/:id`
+
+Retorna os detalhes de um quadrinho específico da saga com base no ID fornecido.
+
+#### Exclusão de um Quadrinho
+
+**Método:** `DELETE`
+
+**Endpoint:** `/comic/:id`
+
+Exclui um quadrinho da saga com base no ID fornecido.
+
+#### Busca de Quadrinhos por Título
+
+**Método:** `GET`
+
+**Endpoint:** `/comic/titulo/:title`
+
+Retorna os quadrinhos da saga que correspondem ao título fornecido.
+
+#### Busca de Quadrinhos por Criador
+
+**Método:** `GET`
+
+**Endpoint:** `/comic/creator/:creator`
+
+Retorna os quadrinhos da saga que foram criados pelo criador fornecido.
+
+#### Busca de Criadores por Função
+
+**Método:** `GET`
+
+**Endpoint:** `/comic/creator/role/:role`
+
+Retorna os criadores da saga que possuem a função fornecida.
+
+### Criadores
+
+#### Criação de um Criador
+
+**Método:** `POST`
+
+**Endpoint:** `/creator`
+
+Cria um novo criador na saga.
+
+#### Atualização de um Criador
+
+**Método:** `POST`
+
+**Endpoint:** `/creator/:id`
+
+Atualiza os detalhes de um criador existente na saga.
+
+#### Listagem de Todos os Criadores
+
+**Método:** `GET`
+
+**Endpoint:** `/creator`
+
+Retorna todos os criadores da saga.
+
+#### Busca de um Criador por ID
+
+**Método:** `GET`
+
+**Endpoint:** `/creator/:id`
+
+Retorna os detalhes de um criador específico da saga com base no ID fornecido.
+
+#### Exclusão de um Criador
+
+**Método:** `DELETE`
+
+**Endpoint:** `/creator/:id`
+
+Exclui um criador da saga com base no ID fornecido.
 
 ## Controlador
 
@@ -123,6 +241,35 @@ O `CharacterController` é responsável por lidar com as requisições relaciona
 - `findByName`: Encontra um personagem pelo nome.
 - `findComicsByCharacter`: Retorna os quadrinhos em que um personagem específico aparece.
 
+### ComicController
+
+O `ComicController` é responsável por lidar com as requisições relacionadas aos quadrinhos da saga.
+
+#### Métodos
+
+- `create`: Cria um novo quadrinho.
+- `findById`: Encontra um quadrinho pelo ID.
+- `findAll`: Retorna todos os quadrinhos.
+- `updateById`: Atualiza um quadrinho pelo ID.
+-
+
+ `deleteById`: Exclui um quadrinho pelo ID.
+- `findByTitle`: Encontra quadrinhos pelo título.
+- `findByCreator`: Encontra quadrinhos pelo criador.
+- `findCreatorsByRole`: Encontra criadores pelo papel.
+
+### CreatorController
+
+O `CreatorController` é responsável por lidar com as requisições relacionadas aos criadores da saga.
+
+#### Métodos
+
+- `create`: Cria um novo criador.
+- `findById`: Encontra um criador pelo ID.
+- `findAll`: Retorna todos os criadores.
+- `updateById`: Atualiza um criador pelo ID.
+- `deleteById`: Exclui um criador pelo ID.
+
 ## Esquema
 
 ### CharacterSchema
@@ -136,6 +283,29 @@ Campos:
 - `description`: Descrição do personagem.
 - `img`: URL da imagem do personagem.
 - `comics`: Array de quadrinhos em que o personagem aparece.
+
+### ComicSchema
+
+O `ComicSchema` é o esquema do Mongoose que define a estrutura de dados para a entidade "Quadrinhos".
+
+Campos:
+
+- `id`: ID numérico do quadrinho.
+- `title`: Título do quadrinho.
+- `description`: Descrição do quadrinho.
+- `publicationDate`: Data de publicação do quadrinho.
+- `cover`: URL da capa do quadrinho.
+- `creators`: Array de criadores do quadrinho.
+
+### CreatorSchema
+
+O `CreatorSchema` é o esquema do Mongoose que define a estrutura de dados para a entidade "Criadores".
+
+Campos:
+
+- `id`: ID numérico do criador.
+- `name`: Nome do criador.
+- `img`: URL da imagem do criador.
 
 ## Serviço
 
@@ -151,4 +321,33 @@ O `CharacterService` é responsável por fornecer métodos para manipular dados 
 - `updateById`: Atualiza um personagem pelo ID.
 - `deleteById`: Exclui um personagem pelo ID.
 - `findByName`: Encontra um personagem pelo nome.
-- `findComicsByName`: Retorna os quadr
+- `findComicsByName`: Retorna os quadrinhos em que um personagem específico aparece.
+
+### ComicService
+
+O `ComicService` é responsável por fornecer métodos para manipular dados relacionados aos quadrinhos da saga.
+
+#### Métodos
+
+- `create`: Cria um novo quadrinho.
+- `findById`: Encontra um quadrinho pelo ID.
+- `findAll`: Retorna todos os quadrinhos.
+- `updateById`: Atualiza um quadrinho pelo ID.
+- `deleteById`: Exclui um quadrinho pelo ID.
+- `findByTitle`: Encontra quadrinhos pelo título.
+- `findByCreator`: Encontra quadrinhos pelo criador.
+- `findCreatorsByRole`: Encontra criadores pelo papel.
+
+### CreatorService
+
+O `CreatorService` é responsável por fornecer métodos para manipular dados relacionados aos criadores da saga.
+
+#### Métodos
+
+- `create`: Cria um novo criador.
+- `findById`: Encontra um criador pelo ID.
+- `findAll`: Retorna todos os criadores.
+- `updateById`: Atualiza um criador pelo ID.
+- `deleteById`: Exclui um criador pelo ID.
+
+Esta documentação abrangente descreve as rotas disponíveis, os controladores que manipulam as requisições, os esquemas que definem a estrutura de dados e os serviços que fornecem métodos para manipular esses dados. Certifique-se de usar essas informações ao interagir com a API.
