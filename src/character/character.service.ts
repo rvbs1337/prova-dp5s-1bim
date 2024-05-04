@@ -25,4 +25,14 @@ export class CharacterService{
         const deletedCharacter = await characterSchema.findByIdAndDelete(id)
         return deletedCharacter
     }
+
+    async findByName(name: any) {
+        const foundCharacter = await characterSchema.findOne({ name: name });
+        return foundCharacter;
+    }
+
+    async findComicsByName(name: any) {
+        const foundComics = await characterSchema.find({ name: name });
+        return foundComics;
+    }
 }

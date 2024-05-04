@@ -6,7 +6,8 @@ const characterSchema = new Schema({
     id: Number,
     name: String,
     description: String,
-    img: String
+    img: String,
+    comics: { type : Array , "default" : [] }
 },{
     timestamps: true,
 })

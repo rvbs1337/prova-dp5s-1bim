@@ -22,13 +22,12 @@ class ApiController{
             const resPersonagem:any = await personagemApi.json();
             const personagem = resPersonagem.data.results[0]
 
-            console.log(personagem)
-
             const bodyPersonagem = {
                 id: personagem.id,
                 name: personagem.name,
                 description: personagem.description,
-                img: personagem.thumbnail.path + "." + personagem.thumbnail.extension
+                img: personagem.thumbnail.path + "." + personagem.thumbnail.extension,
+                comics: personagem.comics.items
             }
 
             await new CharacterService().create(bodyPersonagem)

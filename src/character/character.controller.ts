@@ -26,6 +26,20 @@ class CharacterController{
         const character = await new CharacterService().deleteById(req.params.id)
         return res.json(character)
     }
+
+    async findByName(req: Request, res: Response) {
+        const character = await new CharacterService().findByName(req.params.name);
+        return res.json(character);
+    }
+
+    async findComicsByCharacter(req: Request, res: Response) {
+        const character = await new CharacterService().findByName(req.params.name);
+
+        if (character) {
+            const comics = character.comics.map(comic => comic.name);
+            return res.json(comics);
+        }
+    }
 }
 
 export default new CharacterController()
