@@ -1,9 +1,8 @@
-import app from "../app";
-import { describe, it, expect } from "@jest/globals";
-import comicModel from '../src/comic/comic.schema'
-import * as request from 'supertest'
+import request from 'supertest';
+import app from '../app';
 
-describe('testando endpoints comics', ()=>{
+
+/* describe('testando endpoints comics', ()=>{
     it('Deve inserir um comic no banco',async () => {
 
         const comicMock = {
@@ -72,4 +71,48 @@ describe('testando endpoints comics', ()=>{
         expect(deleteResponse.status).toBe(200);
         expect(foundDeletedComic).toBeNull();
     });
-})
+}) */
+
+describe('Comic Endpoints', () => {
+    let comicId: string;
+
+    it('should create a new comic', async () => {
+        const res = await request(app)
+            .post('/comic')
+            .send({
+                title: 'Test Comic',
+                description: 'Test Description',
+                publicationDate: '2024-05-01',
+                cover: 'test-cover.jpg',
+                creators: [{ name: 'Test Creator', role: 'Writer' }]
+            });
+        expect(res.statusCode).toEqual(200);
+        comicId = res.body._id;
+    });
+
+    it('should fetch a comic by ID', async () => {
+        const res = await request(app).get(`/comic/${comicId}`);
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.title).toEqual('Test Comic');
+    });
+
+    it('should fetch all comics', async () => {
+        const res = await request(app).get('/comic');
+        expect(res.statusCode).toEqual(200);
+        expect(Array.isArray(res.body)).toBeTruthy();
+    });
+
+    it('should update a comic by ID', async () => {
+        const res = await request(app)
+            .post(`/comic/${comicId}`)
+            .send({ title: 'Updated Comic Title' });
+        expect(res.statusCode).toEqual(200);
+        expect(res.body.title).toEqual('Updated Comic Title');
+    });
+
+    it('should delete a comic by ID', async () => {
+        const res = await request(app).delete(`/comic/${comicId}`);
+        expect(res.statusCode).toEqual(200);
+        expect(res.body._id).toEqual(comicId);
+    });
+});

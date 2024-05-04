@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
 import characterController from './src/character/character.controller'
-import apiController from './src/api/api.controller'
+// import apiController from './src/api/api.controller'
 import comicController from './src/comic/comic.controller'
 import creatorController from './src/creator/creator.controller'
 
@@ -9,7 +9,7 @@ import creatorController from './src/creator/creator.controller'
 const routes = Router()
 routes.get('/health-check')
 
-routes.get('/createDB', apiController.createDB)
+// routes.get('/createDB', apiController.createDB)
 
 routes.post('/character', characterController.create)
 routes.post('/character/:id', characterController.updateById)
