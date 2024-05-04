@@ -1,4 +1,3 @@
-import app from '../../app'
 import { Request, Response } from 'express'
 import { createUrlApiMarvel, completeUrlApiMarvel} from './api'
 import { CharacterService } from '../character/character.service'
@@ -47,7 +46,6 @@ class ApiController{
 
             await new CreatorService().create(bodyCriador)
 
-            // console.log(criador)
         }
 
         for( let i = 0; i < listaQuadrinho.length; i++){
@@ -67,7 +65,6 @@ class ApiController{
 
             await new ComicService().create(bodyQuadrinho)
 
-            // console.log(resQuadrinho.data.results[0])
         }  
        
 
