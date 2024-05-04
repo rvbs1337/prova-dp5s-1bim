@@ -351,3 +351,15 @@ O `CreatorService` é responsável por fornecer métodos para manipular dados re
 - `deleteById`: Exclui um criador pelo ID.
 
 Esta documentação abrangente descreve as rotas disponíveis, os controladores que manipulam as requisições, os esquemas que definem a estrutura de dados e os serviços que fornecem métodos para manipular esses dados. Certifique-se de usar essas informações ao interagir com a API.
+
+
+
+#### Relatorio dos testes
+## Coverage
+![alt text](image.png)
+
+## Resultado dos testes
+![alt text](image-1.png)
+
+## Resultado do teste de carga com Autocannon
+![alt text](image-2.png)

@@ -15,5 +15,8 @@ module.exports = {
             statements: 80
         }
     },
-    testPathIgnorePatterns: ['./dist/*']
+    testPathIgnorePatterns: ['./dist/*'],
+    collectCoverage: true,
+    coverageReporters: ['lcov', 'text', 'html'],
+    coverageDirectory: 'coverage',
 }
