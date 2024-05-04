@@ -68,4 +68,21 @@ describe('testando endpoints personagem', ()=>{
         expect(deleteResponse.status).toBe(200); 
         expect(foundDeletedCharacter).toBeNull; 
     });
+
+    it('Deve encontrar personagem pelo nome', async () => {
+        const character = 'Avengers';
+        const response = await request(app).get(`/character/nome/${character}`);
+
+        expect(response.status).toEqual(200)
+        expect(response.body.name).toEqual(character)
+    })
+
+    it('Deve encontrar comics pelo personagem', async () => {
+        const character = 'Archangel';
+        const response = await request(app).get(`/character/comicCharacter/${character}`);
+
+        console.log(response.body);
+        expect(response.status).toEqual(200)
+        expect(response.body[0]).toEqual("Age of Apocalypse: The Chosen (1995) #1")
+    })
 })
