@@ -47,7 +47,6 @@ class ApiController{
 
             await new CreatorService().create(bodyCriador)
 
-            // console.log(criador)
         }
 
         for( let i = 0; i < listaQuadrinho.length; i++){
@@ -67,7 +66,6 @@ class ApiController{
 
             await new ComicService().create(bodyQuadrinho)
 
-            // console.log(resQuadrinho.data.results[0])
         }  
        
 
