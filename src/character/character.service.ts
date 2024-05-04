@@ -27,11 +27,12 @@ export class CharacterService{
     }
 
     async findByName(name: any) {
-        try {
-            const foundCharacter = await characterSchema.findOne({ name: name });
-            return foundCharacter;
-        } catch (error: any) {
-            throw new Error('Erro ao buscar personagem com nome: ' + error.message);
-        }
+        const foundCharacter = await characterSchema.findOne({ name: name });
+        return foundCharacter;
+    }
+
+    async findComicsByName(name: any) {
+        const foundComics = await characterSchema.find({ name: name });
+        return foundComics;
     }
 }

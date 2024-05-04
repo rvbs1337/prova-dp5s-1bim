@@ -28,19 +28,17 @@ class CharacterController{
     }
 
     async findByName(req: Request, res: Response) {
-        const character = await new CharacterService().findByName(req.params.name)
+        const character = await new CharacterService().findByName(req.params.name);
+        return res.json(character);
+    }
 
-        try {
-            if (character) {
-                res.status(200).json(character);
-            } else {
-                res.status(404).json({ message: 'Nenhum  personagem com o nome procurado.' });
-            }
-        } catch (error: any) {
-            res.status(500).json({ message: error.message });
+    async findComicsByCharacter(req: Request, res: Response) {
+        const character = await new CharacterService().findByName(req.params.name);
+
+        if (character) {
+            const comics = character.comics.map(comic => comic.name);
+            return res.json(comics);
         }
-
-        return res.json(character)
     }
 }
 
